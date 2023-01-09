@@ -6,32 +6,18 @@ public class MergeAlternately {
     }
 
     public static String mergeAlternately(String word1, String word2) {
-        int counter = 0;
+        int counter = Math.min(word1.length(),word2.length());
         String res = "";
-        String reminder = "";
-        if (word1.length() > word2.length()) {
-            counter = word2.length() * 2;
-            reminder = word1.substring(word2.length());
-        }
-        else if(word1.length()<word2.length()){
-            counter = word1.length()*2;
-            reminder = word2.substring(word1.length());
-        }
-        else{
-            counter = word1.length()*2;
-        }
-        int w1 = 0;
-        int w2 = 0;
         for (int i = 0; i < counter; i++) {
-            if(i%2==0){
-                res+=word1.charAt(w1);
-                w1++;
-            }
-            else{
-                res+=word2.charAt(w2);
-                w2++;
-            }
+            res+=word1.charAt(i);
+            res+=word2.charAt(i);
         }
-        return res+reminder;
+        if(word1.length()>word2.length()){
+            res+=word1.substring(counter);
+        }
+        else if(word2.length()>word1.length()){
+            res+=word2.substring(counter);
+        }
+        return res;
     }
 }
